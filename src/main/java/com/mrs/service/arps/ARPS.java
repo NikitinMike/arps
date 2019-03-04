@@ -47,8 +47,11 @@ public class ARPS {
     //      Итоговая сумма документа после учета в нем данного вида затрат.
     ArrayList<String[]> arps50 = new ArrayList();
 
+    ARPS(String arpsFile){arpsLoad(arpsFile);}
+
     boolean arpsLoad(String arpsFile){
 
+        System.out.println(arpsFile);
         BufferedReader reader;
         try {
             FileInputStream fis =  new FileInputStream(arpsFile);
