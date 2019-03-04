@@ -34,11 +34,9 @@ public class ARPS {
     String developmentBasis; //19) Основание для разработки передаваемого документа
     String frameworkBase; //20) Обозначение нормативной базы, на основании которой составлен документ
 
-//    ArrayList<String> arps3 = new ArrayList();
     ArrayList<String[]> arps20 = new ArrayList();
     ArrayList<String[]> arps30 = new ArrayList();
     ArrayList<String[]> arps50 = new ArrayList();
-//        Map<String,String[]> arps30 = null;
 
     boolean arpsLoad(String arpsFile){
 
@@ -50,27 +48,13 @@ public class ARPS {
             String ls20="";
             while (line != null) {
                 if (line!=null) {
-//                System.out.println(line);
                     String ls[]=line.split("#");
                     switch (Integer.parseInt(ls[0])){
                         case 3:
-//                            arps3.add(line);
-//                            for (int i = 1; i < ls.length; i++) {
-//                                System.out.println();
-//                                System.out.printf("%d:%s",i,ls[i]);
-//                                if (!ls[i].isEmpty()) arps3.add(ls[i]);
-//                            }
-//                                System.out.print(ls[i]+" ");
                              title=ls[2]; //2) Наименование договора (объекта) (текст).
-                            //-3) Адрес объекта (текст).
                              documentNumber=ls[4]; //4) Номер документа или наименование передаваемой сметы (текст).
                              documentName=ls[5]; //5) Наименование документа (текст).
-                            //-6) Наименование организации-заказчика (текст).
                              representativeName=ls[7]; //7) ФИО представителя организации-заказчика (текст).
-                            //-8) Наименование организации-подрядчика (текст).
-                            //-9) ФИО представителя организации-подрядчика (текст).
-                            //-10) Наименование организации-субподрядчика (текст).
-                            //-11) ФИО представителя организации-субподрядчика (текст).
                              drafterName=ls[12]; //12) ФИО составителя документа (текст).
                              controllerName=ls[13]; //13) ФИО контролера документа (текст).
                              totalCost=ls[14]; //14) Общая стоимость по смете, акту выполненных работ (число).
@@ -82,16 +66,9 @@ public class ARPS {
                              frameworkBase=ls[20]; //20) Обозначение нормативной базы, на основании которой составлен документ
                             break;
                         case 10:
-//                            arps30.add(new String[]{ls[1],"","",ls[3],"","","",""}); // заголовок раздела
-//                            System.out.println(ls[1]);
                             arps30.add(new String[]{"",ls[1],"",ls[3],"","","",""}); // заголовок раздела
                             break;
                         case 20:
-//                            arps20.add(line);
-//                            String ln20 = "";
-//                            for (int i = 1; i < ls.length; i++)
-//                                if (!ls[i].isEmpty())
-//                                ln20 += ls[i]+", ";
                             String ln20[]=new String[]{
                                     ls[1],ls[2],ls[3],ls[4],ls[5],
                                     ls[6],ls[7],ls[8],ls[9],ls[10],
@@ -130,16 +107,9 @@ public class ARPS {
 //                            k[ln20i][ls[1]]=0.0;
                             break;
                         case 30:
-//                            arps30.add(line);
-//                            String ln30 = "";
-//                            for (int i = 1; i < ls.length; i++)
-//                                if (!ls[i].isEmpty())
-//                                    ln30 += ls[i]+", ";
-//                            System.out.println(ls.length+" : "+line);
                             if ("2".compareTo(ls[1])==0)
                                 arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],"","",""});
                             else arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],ls[6],ls[7],ls[8]});
-//                            arps30.put(ls20,new String[]{ls[1],ls[2],ls[3],ls[4],ls[5],"","",""});
                             break;
                         case 0:
                             break;
@@ -164,4 +134,3 @@ public class ARPS {
     }
 
 }
-
