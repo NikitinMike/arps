@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${title}">ARPS 1.10</title>
+
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>-->
+    <!--<link rel="stylesheet" th:href="@{/css/main.css}"/>-->
+
+</head>
+
+<body>
+
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
+    <!--<a class="navbar-brand" href="#">Mkyong.com</a>-->
+<!--</nav>-->
+
+<main role="main" class="container">
+
+    <div class="starter-template" hidden>
+        <!--<h1><span th:text="'Объект: ' + ${arps3}"></span></h1>-->
+        <h3 th:each="task : ${arps3}" th:text="${task}"></h3>
+    </div>
+
+    <!--<ol><li th:each="task : ${arps20}" th:text="${task}"></li></ol>-->
+    <table border="1">
+        <caption><h2> Тип 20 – Позиция документа </h2></caption>
+        <thead>
+            <tr  align="center" bgcolor="#ffe4c4">
+                <th>#</th>
+                <th>Код</th>
+                <th>Единица измерения</th>
+                <th>Наименование</th>
+                <th>Норма расхода</th>
+                <th>Цена нормативная</th>
+                <th>фактическая</th>
+                <th>местная</th>
+                <th></th><th></th><th></th>
+                <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+                <th></th><th></th><th></th>
+                <th></th><th></th>
+                <th>тип</th>
+                <th></th><th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="task : ${arps20}" align="right">
+                <td th:text="${task[0]}" width="3%"/>
+                <td th:text="${task[1]}"  align="center" width="10%"/>
+                <td th:text="${task[2]}" align="center" width="5%"/>
+                <td th:text="${task[3]}" align="left" width="30%"/>
+                <td th:text="${task[4]}" />
+                <td th:text="${task[5]}" />
+                <td th:text="${task[6]}" />
+                <td th:text="${task[7]}" />
+                <td th:text="${task[8]}" />
+                <td th:text="${task[9]}" />
+                <td th:text="${task[10]}" />
+                <td th:text="${task[11]}" />
+                <td th:text="${task[12]}" />
+                <td th:text="${task[13]}" />
+                <td th:text="${task[14]}" />
+                <td th:text="${task[15]}" />
+                <td th:text="${task[16]}" />
+                <td th:text="${task[17]}" />
+                <td th:text="${task[18]}" />
+                <td th:text="${task[19]}" />
+                <td th:text="${task[20]}" />
+                <td th:text="${task[21]}" />
+                <td th:text="${task[22]}" />
+                <td th:text="${task[23]}" />
+                <td th:text="${task[24]}" />
+                <td th:text="${task[25]}" />
+                <td th:text="${task[26]}" />
+                <!--<td th:text="${task[27]}" />-->
+                <!--<td th:text="${task[28]}" />-->
+                <!--<td th:text="${task[29]}" />-->
+            </tr>
+        </tbody>
+    </table>
+
+    <!--<ol><li th:each="task : ${arps30}" th:text="${task}"></li></ol>-->
+    <table border="1">
+        <caption><h2> Тип 30 – Ресурс </h2></caption>
+        <thead>
+            <tr  align="center" bgcolor="#ffe4c4">
+                <th>Код</th>
+                <th>Единица измерения</th>
+                <th>Наименование</th>
+                <th>тип</th>
+                <th>Норма расхода</th>
+                <th>Цена нормативная</th>
+                <th>фактическая</th>
+                <th>местная</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="task : ${arps30}" >
+                <td th:text="${task[0]}" width="10%" align="center"/>
+                <td th:text="${task[1]}" align="center" width="5%"/>
+                <td th:text="${task[2]}" align="left" width="40%"/>
+                <td th:text="${task[3]}" align="center" width="5%" />
+                <td th:text="${task[4]}" align="right" />
+                <td th:text="${task[5]}" align="right" />
+                <td th:text="${task[6]}" align="right" />
+                <td th:text="${task[7]}" align="right" />
+                <!--<td th:text="${task[8]}" align="left" width="10%" />-->
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="starter-template" hidden>
+        <h2> Тип 50 – лимитированные затраты </h2>
+        <table border="1">
+            <tr th:each="task : ${arps50}" >
+                <td th:text="${task[0]}"/>
+                <td th:text="${task[1]}" align="right"/>
+            </tr>
+        </table>
+    </div>
+
+</main>
+ <!--/.container -->
+
+<!--<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>-->
+</body>
+</html>

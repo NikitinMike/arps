@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title th:text="${title}">ARPS 1.10</title>
+
+    <!--<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>-->
+    <!--<link rel="stylesheet" th:href="@{/css/main.css}"/>-->
+
+</head>
+
+<body>
+
+<!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
+    <!--<a class="navbar-brand" href="#">Mkyong.com</a>-->
+<!--</nav>-->
+
+<main role="main" class="container">
+
+    <div class="starter-template" hidden>
+        <!--<h1><span th:text="'Объект: ' + ${arps3}"></span></h1>-->
+        <!--<h3 th:each="task : ${arps3}" th:text="${task}"></h3>-->
+    </div>
+
+    <table border="0">
+        <caption hidden="true"><h2> Тип 30 – Ресурс </h2></caption>
+        <thead>
+            <tr  align="center" bgcolor="#ffe4c4">
+                <th>Работа</th>
+                <th>Код</th>
+                <th>Наименование</th>
+                <th>тип</th>
+                <!--0 – заработная плата,-->
+                <!--1 – эксплуатация машин и механизмов,-->
+                <!--2 – материал.-->
+                <th>Норма расхода</th>
+                <th>Единица измерения</th>
+                <th>Цена нормативная</th>
+                <th>фактическая</th>
+                <th>местная</th>
+            </tr>
+        </thead>
+
+        <tbody th:each="task : ${arps30}">
+            <tr th:unless="${task[4]}==''" bgcolor="#7fffd4">
+                <td th:text="${task[0]}" align="center"/>
+                <td th:text="${task[1]}" align="center" width="5%"/>
+                <td th:text="${task[3]}" align="left" width="30%"/>
+
+                <!--<td th:text="${task[3]}" align="center" width="5%" />-->
+                <td th:switch="${task[4]}" align="center">
+                    <p th:case="0">заработная плата</p>
+                    <p th:case="1">эксплуатация машин и механизмов</p>
+                    <p th:case="2">материал</p>
+                </td>
+                <td th:text="${task[5]}" align="right" />
+                <td th:text="${task[2]}" align="center" width="5%"/>
+                <td th:text="${task[6]}" align="right" />
+                <td th:text="${task[7]}" align="right" />
+                <td th:text="${task[8]}" align="right" />
+                <!--<td th:text="${task[8]}" align="left" width="10%" />-->
+            </tr>
+            <tr th:if="${task[0]}==''" bgcolor="#00ffff">
+                <td th:text="${task[0]}" align="center"/>
+                <td></td>
+                <td th:text="${task[3]}" align="left" width="30%"/>
+                <td th:text="${task[1]}" align="center" />
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr th:if="${task[4]}=='' and ${task[2]}!=''" >
+                <td th:text="${task[0]}" align="center"/>
+                <td th:text="${task[1]}" align="center" width="5%"/>
+                <td th:text="${task[3]}" align="left" width="30%"/>
+                <td></td>
+                <td></td>
+                <td th:text="${task[2]}" align="center" width="5%"/>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="starter-template" hidden>
+        <h2> Тип 50 – лимитированные затраты </h2>
+        <table border="1">
+            <tr th:each="task : ${arps50}" >
+                <td th:text="${task[0]}"/>
+                <td th:text="${task[1]}" align="right"/>
+            </tr>
+        </table>
+    </div>
+
+</main>
+ <!--/.container -->
+
+<!--<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>-->
+</body>
+</html>
