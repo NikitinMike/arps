@@ -1,26 +1,14 @@
 package com.mrs.service.arps;
 
-import com.sun.deploy.net.HttpResponse;
-import org.apache.catalina.connector.Request;
-import org.apache.catalina.connector.Response;
-import org.apache.catalina.connector.ResponseFacade;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 public class MainController {
@@ -28,7 +16,7 @@ public class MainController {
     private static final String UPLOAD_DIR = "/uploads";
 
     @RequestMapping("/")
-    String main(Model model, HttpServletRequest request) throws IOException, ServletException {
+    String main(Model model, HttpServletRequest request) {
         File[] fList = new File(request.getServletContext().getRealPath("")+UPLOAD_DIR).listFiles();
         model.addAttribute("files", fList);
         return "index";
@@ -62,23 +50,23 @@ public class MainController {
     }
 
     @RequestMapping("/arps2")
-    String arps2(Model model, HttpServletRequest request) throws IOException, ServletException {
+    String arps2(Model model, HttpServletRequest request) {
         String file =request.getParameter("file");
         ARPS    arps=new ARPS(file);
-        model.addAttribute("title", arps.title);
-        model.addAttribute("name", arps.name);
-        model.addAttribute("arps20", arps.arps20);
-        model.addAttribute("arps50", arps.arps50);
+        model.addAttribute("title", arps.getTitle());
+        model.addAttribute("name", arps.getName());
+        model.addAttribute("arps20", arps.getArps20());
+        model.addAttribute("arps50", arps.getArps50());
         return "arps2";
     }
 
     @RequestMapping("/arps3")
-    String arps3(Model model, HttpServletRequest request) throws IOException, ServletException {
+    String arps3(Model model, HttpServletRequest request) {
         String file =request.getParameter("file");
         ARPS arps=new ARPS(file);
-        model.addAttribute("title", arps.title);
-        model.addAttribute("name", arps.name);
-        model.addAttribute("arps30", arps.arps30);
+        model.addAttribute("title", arps.getTitle());
+        model.addAttribute("name", arps.getName());
+        model.addAttribute("arps30", arps.getArps30());
         return "arps3";
     }
 

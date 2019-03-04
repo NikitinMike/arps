@@ -1,39 +1,37 @@
 package com.mrs.service.arps;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.Getter;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Map;
 
-public class ARPS {
+@Getter
+class ARPS {
 
     // 3
     // 1) Номер договора (объекта) (текст)
-    String title; //2) Наименование договора (объекта) (текст).
+    private String title; //2) Наименование договора (объекта) (текст).
     // 3) Адрес объекта (текст).
-    String documentNumber; //4) Номер документа или наименование передаваемой сметы (текст).
-    String documentName; //5) Наименование документа (текст).
+    private String documentNumber; //4) Номер документа или наименование передаваемой сметы (текст).
+    private String documentName; //5) Наименование документа (текст).
     // 6) Наименование организации-заказчика (текст).
-    String representativeName; //7) ФИО представителя организации-заказчика (текст).
+    private String representativeName; //7) ФИО представителя организации-заказчика (текст).
     // 8) Наименование организации-подрядчика (текст).
     // 9) ФИО представителя организации-подрядчика (текст).
     // 10) Наименование организации-субподрядчика (текст).
     // 11) ФИО представителя организации-субподрядчика (текст).
-    String drafterName; //12) ФИО составителя документа (текст).
-    String controllerName; //13) ФИО контролера документа (текст).
-    String totalCost; //14) Общая стоимость по смете, акту выполненных работ (число).
-    String prices; //15) В каких ценах составлен документ (число).
-    String period; //16) Период, за который составлен документ (число).
-    String code; //17) Код стройки (текст).
-    String name; //18) Наименование стройки (текст).
-    String developmentBasis; //19) Основание для разработки передаваемого документа
-    String frameworkBase; //20) Обозначение нормативной базы, на основании которой составлен документ
+    private String drafterName; //12) ФИО составителя документа (текст).
+    private String controllerName; //13) ФИО контролера документа (текст).
+    private String totalCost; //14) Общая стоимость по смете, акту выполненных работ (число).
+    private String prices; //15) В каких ценах составлен документ (число).
+    private String period; //16) Период, за который составлен документ (число).
+    private String code; //17) Код стройки (текст).
+    private String name; //18) Наименование стройки (текст).
+    private String developmentBasis; //19) Основание для разработки передаваемого документа
+    private String frameworkBase; //20) Обозначение нормативной базы, на основании которой составлен документ
 
 
     ArrayList<String[]> arps20 = new ArrayList();
@@ -49,7 +47,7 @@ public class ARPS {
 
     ARPS(String arpsFile){arpsLoad(arpsFile);}
 
-    boolean arpsLoad(String arpsFile){
+    private boolean arpsLoad(String arpsFile){
 
         System.out.println(arpsFile);
         BufferedReader reader;
@@ -59,8 +57,8 @@ public class ARPS {
             String line = reader.readLine();
             String ls20="";
             while (line != null) {
-                if (line!=null) {
-                    String ls[]=line.split("#");
+//                if (line!=null) {
+                String[] ls = line.split("#");
                     switch (Integer.parseInt(ls[0])){
                         case 3:
                             title=ls[2]; //2) Наименование договора (объекта) (текст).
@@ -81,13 +79,13 @@ public class ARPS {
                             arps30.add(new String[]{"",ls[1],"",ls[3],"","","",""}); // заголовок раздела
                             break;
                         case 20:
-                            String ln20[]=new String[]{
-                                    ls[1],ls[2],ls[3],ls[4],ls[5],
-                                    ls[6],ls[7],ls[8],ls[9],ls[10],
-                                    ls[11],ls[12],ls[13],ls[14],ls[15],
-                                    ls[16],ls[17],ls[18],ls[19],ls[20],
-                                    ls[21],ls[22],ls[23],ls[24],ls[25],
-                                    ls[26],ls[27]};
+                            String[] ln20 = new String[]{
+                                    ls[1], ls[2], ls[3], ls[4], ls[5],
+                                    ls[6], ls[7], ls[8], ls[9], ls[10],
+                                    ls[11], ls[12], ls[13], ls[14], ls[15],
+                                    ls[16], ls[17], ls[18], ls[19], ls[20],
+                                    ls[21], ls[22], ls[23], ls[24], ls[25],
+                                    ls[26], ls[27]};
                             arps20.add(ln20); //
                             ls20 = ln20[0];
                             arps30.add(new String[]{ls20,ln20[1],ln20[2],ln20[3],"","","","","",""});
@@ -111,7 +109,7 @@ public class ARPS {
                             System.out.println();
                             break;
                     }
-                }
+//                }
                 line = reader.readLine();
             }
             reader.close();
