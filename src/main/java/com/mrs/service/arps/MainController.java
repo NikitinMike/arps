@@ -53,10 +53,12 @@ public class MainController {
     String arps2(Model model, HttpServletRequest request) {
         String file =request.getParameter("file");
         ARPS    arps=new ARPS(file);
+        model.addAttribute("name", arps.getDocumentName());
         model.addAttribute("title", arps.getTitle());
-        model.addAttribute("name", arps.getName());
+        model.addAttribute("subtitle", arps.getName()+" "+arps.getDevelopmentBasis()+" "+arps.getFrameworkBase());
         model.addAttribute("arps20", arps.getArps20());
         model.addAttribute("arps50", arps.getArps50());
+        model.addAttribute("persons", "Представитель заказчика: "+arps.getRepresentativeName()+" "+arps.getDrafterName()+" "+arps.getControllerName());
         return "arps2";
     }
 
@@ -64,8 +66,9 @@ public class MainController {
     String arps3(Model model, HttpServletRequest request) {
         String file =request.getParameter("file");
         ARPS arps=new ARPS(file);
+        model.addAttribute("name", arps.getDocumentName());
         model.addAttribute("title", arps.getTitle());
-        model.addAttribute("name", arps.getName());
+        model.addAttribute("subtitle", arps.getName()+" "+arps.getDevelopmentBasis()+" "+arps.getFrameworkBase());
         model.addAttribute("arps30", arps.getArps30());
         return "arps3";
     }

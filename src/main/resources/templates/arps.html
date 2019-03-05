@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <!--/*@thymesVar id="title" type=""*/-->
     <title th:text="${title}">ARPS 1.10</title>
 
     <!--<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>-->
@@ -12,7 +13,9 @@
 </head>
 
 <body>
-
+<h2 th:text="${message}"></h2>
+<form action="/" method="post" enctype="multipart/form-data">
+    <input type="submit" value="HOME">
 <!--<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">-->
     <!--<a class="navbar-brand" href="#">Mkyong.com</a>-->
 <!--</nav>-->

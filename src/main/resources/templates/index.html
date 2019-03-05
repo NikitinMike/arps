@@ -3,23 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>хранилище смет АРПС 1.10</title>
 </head>
 
 <body>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <!--<ul><li th:each="file : ${files}" th:text="${file}"><button/></li></ul>-->
-        <br>
+        <br/>
 
         <div th:each="file : ${files}" >
-            <button th:text="${file.getName()}+' работы и материалы '" th:formaction="@{/arps2}" th:value="${file.getName()}" name="file" type="submit">20</button>
-            <button th:text="${file.getName()}+' ресурсы '" th:formaction="@{/arps3}" th:value="${file.getName()}" name="file" type="submit">30</button>
+            <button th:text="'работы и материалы '+${file.getName()}" th:formaction="@{/arps2}" th:value="${file.getName()}" name="file" type="submit">20</button>
+            <button th:text="'ресурсы '+${file.getName()}" th:formaction="@{/arps3}" th:value="${file.getName()}" name="file" type="submit">30</button>
         </div>
 
-        <br>
+        <br/>
         Select File to Upload:<input type="file" name="fileName">
-        <br>
-        <input type="submit" value="Upload">
+        <br/>
+        <input type="submit" value="Upload"/>
     </form>
 </body>
 
