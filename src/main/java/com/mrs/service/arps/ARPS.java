@@ -77,13 +77,15 @@ class ARPS {
                         arps30.add(new String[]{"",ls[1],"",ls[3],"","","",""}); // заголовок раздела
                         break;
                     case 20:
+                        String type = ls[2].matches("С.+|ФСС.+")?"M":"W";
+//                        ls[2].matches("ФЕР*");
                         String[] ln20 = new String[]{
                                 ls[1], ls[2], ls[3], ls[4], ls[5],
                                 ls[6], ls[7], ls[8], ls[9], ls[10],
                                 ls[11], ls[12], ls[13], ls[14], ls[15],
                                 ls[16], ls[17], ls[18], ls[19], ls[20],
                                 ls[21], ls[22], ls[23], ls[24], ls[25],
-                                ls[26], ls[27]};
+                                ls[26], ls[27], type};
                         arps20.add(ln20); //
                         ls20 = ln20[0];
                         arps30.add(new String[]{ls20,ln20[1],ln20[2],ln20[3],"","","","","",""});

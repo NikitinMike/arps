@@ -63,8 +63,8 @@
                 <!--<th>29 Номер сметы</th>-->
             </tr>
         </thead>
-        <tbody>
-            <tr th:each="task : ${arps20}" align="right">
+        <tbody th:each="task : ${arps20}">
+            <tr align="right" th:bgcolor="${task[27]}=='W'?'#5f9ea0':'#7fffd4'">
                 <td th:text="${task[0]}" width="3%"/>
                 <td th:text="${task[1]}" align="center" width="10%"/>
                 <td th:text="${task[2]}" align="center" width="5%"/>
