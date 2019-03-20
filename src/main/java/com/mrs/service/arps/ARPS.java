@@ -50,6 +50,7 @@ class ARPS {
 
     private boolean arpsLoad(String arpsFile){
 
+        System.out.println(arpsFile);
         try (FileInputStream fis = new FileInputStream(arpsFile)) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(fis, "Cp866"));
             String line = reader.readLine();
@@ -68,10 +69,14 @@ class ARPS {
                         totalCost=ls[14]; //14) Общая стоимость по смете, акту выполненных работ (число).
                         prices=ls[15]; //15) В каких ценах составлен документ (число).
                         period=ls[16]; //16) Период, за который составлен документ (число).
-                        code=ls[17]; //17) Код стройки (текст).
-                        name=ls[18]; //18) Наименование стройки (текст).
-                        developmentBasis=ls[19]; //19) Основание для разработки передаваемого документа
-                        frameworkBase=ls[20]; //20) Обозначение нормативной базы, на основании которой составлен документ
+                        if (ls.length >= 18) {
+                            code = ls[17]; //17) Код стройки (текст).
+                            name = ls[18]; //18) Наименование стройки (текст).
+                            if (ls.length >= 20) {
+                                developmentBasis = ls[19]; //19) Основание для разработки передаваемого документа
+                                frameworkBase = ls[20]; //20) Обозначение нормативной базы, на основании которой составлен документ
+                            }
+                        }
                         break;
                     case 10:
                         arps30.add(new String[]{"",ls[1],"",ls[3],"","","",""}); // заголовок раздела
@@ -93,9 +98,15 @@ class ARPS {
                     case 25: // Тип 25 – поправочные коэффициенты.
                         break;
                     case 30:
-                        if ("2".compareTo(ls[1])==0)
+                        System.out.println(line);
+                        for (int i = 0; i < ls.length; i++)
+                            System.out.println(i+":"+ls[i]);
+                        if ("2".equals(ls[1]))
                             arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],"","",""});
-                        else arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],ls[6],ls[7],ls[8]});
+                        else
+                            if(ls.length>7)
+                                arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],ls[6],ls[7],ls[8]});
+                            else arps30.add(new String[]{ls20,ls[1],ls[2],ls[3],ls[4],ls[5],ls[6],"",""});
                         break;
                     case 0:
                         break;

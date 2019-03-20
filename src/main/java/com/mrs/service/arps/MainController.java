@@ -51,7 +51,7 @@ public class MainController {
 
     @RequestMapping("/arps2")
     String arps2(Model model, HttpServletRequest request) {
-        String file =request.getParameter("file");
+        String file =request.getServletContext().getRealPath("")+UPLOAD_DIR+ File.separator +request.getParameter("file");
         ARPS    arps=new ARPS(file);
         model.addAttribute("name", arps.getDocumentName());
         model.addAttribute("title", arps.getTitle());
@@ -64,7 +64,7 @@ public class MainController {
 
     @RequestMapping("/arps3")
     String arps3(Model model, HttpServletRequest request) {
-        String file =request.getParameter("file");
+        String file =request.getServletContext().getRealPath("")+UPLOAD_DIR+ File.separator +request.getParameter("file");
         ARPS arps=new ARPS(file);
         model.addAttribute("name", arps.getDocumentName());
         model.addAttribute("title", arps.getTitle());
